@@ -1,4 +1,4 @@
-# 2024-04-25 - Delkomponenter i VHDL (del I)
+# 2024-04-26 - Delkomponenter i VHDL (del I)
 
 Konstruktion av en delkomponent för att skriva ut ett hexadecimalt tal på en given 7-segmentsdisplay.
 Talet som ska skrivas ut matas in på 4-bitars binär form. Konstruktionen ska implementeras via hårdvarubeskrivande kod skriven i VHDL.
