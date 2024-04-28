@@ -3,6 +3,10 @@
 Konstruktion av en delkomponent för att skriva ut ett hexadecimalt tal på en given 7-segmentsdisplay.
 Talet som ska skrivas ut matas in på 4-bitars binär form. Konstruktionen ska implementeras via hårdvarubeskrivande kod skriven i VHDL.
 
+## Syntesbar kod i VHDL
+Katalogen *vhdl* innehåller syntesbar kod för konstruktionen, skriven i VHDL.  
+Nästa lektion ska en testbänk läggas till.
+
 ## Exempelkod i SystemVerilog
 Katalogen *systemverilog* innehåller konstruktionen skriven i SystemVerilog.  
 Ladda ned och öppna .qar-filen i denna katalog för att direkt öppna projektet med pins konfigurerade.  
