@@ -1,11 +1,6 @@
-# 2024-04-26 - Delkomponenter i VHDL (del I)
+# 2024-05-06 - Konstruktion av D-vippan
 
-Konstruktion av en delkomponent för att skriva ut ett hexadecimalt tal på en given 7-segmentsdisplay.
-Talet som ska skrivas ut matas in på 4-bitars binär form. 
-
-## Syntesbar kod i VHDL
-Katalogen *vhdl* innehåller syntesbar kod för konstruktionen, skriven i VHDL.  
-Nästa lektion ska en testbänk läggas till.
+Exempel på implementering av D-vippan via hårdvarubeskrivande kod.
 
 ## Exempelkod i SystemVerilog
 Katalogen *systemverilog* innehåller konstruktionen skriven i SystemVerilog.  
