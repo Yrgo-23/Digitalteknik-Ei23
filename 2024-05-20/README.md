@@ -1,4 +1,4 @@
-# 2024-05-17 - Generiska parametrar i VHDL
+# 2024-05-20 - Generiska parametrar i VHDL
 
 Exempel på användning av generiska parametrar för val av antalet tryckknappar och lysdioder i en konstruktion.
 
