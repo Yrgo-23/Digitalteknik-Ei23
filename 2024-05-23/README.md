@@ -1,4 +1,4 @@
-# 2024-05-23 - Timerkretsar i VHDL (del I - II)
+# 2024-05-23 - Timerkretsar i VHDL (del II)
 
 Implementering av timerkretsar för toggling av lysdioder.
 VHDL-konstruktionen kommer slutföras nästa lektion.
