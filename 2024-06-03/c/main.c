@@ -4,6 +4,13 @@
  *        A button connected to PIN 13 (PORTB5) is used to update the state 
  *        to next. A button connected to PIN 12 (PORTB4) is used to reset
  *        the FSM. A LED connected to PIN 9 (PORTB1) is enabled in STATE_3. 
+ * 
+ * @param RESET_BUTTON[in]    Button for generating system reset,
+ *                            connected to PIN 12 (PORTB4).
+ * @param NEXT_BUTTON[in]     Button for changing the state to next,
+ *                            connected to PIN 13 (PORTB5).
+ * @param LED[out]            LED controlled by the state machine,
+ *                            connected to PIN 9 (PORTB1).
  *       
  * @note The FSM is circular, hence the state after STATE_3 is STATE_0.
  ******************************************************************************/
@@ -13,14 +20,14 @@
 /*******************************************************************************
  * @brief Definitions used for the project.
  ******************************************************************************/
-#define LED PORTB1    
-#define BUTTON PORTB5
 #define RESET_BUTTON PORTB4
+#define NEXT_BUTTON  PORTB5 
+#define LED          PORTB1 
 
-#define LED_ON            PORTB |= (1U << LED)
-#define LED_OFF           PORTB &= ~(1U << LED)
-#define BUTTON_IS_PRESSED (PINB & (1U << BUTTON))
-#define SYSTEM_RESET      (PINB & (1U << RESET_BUTTON))
+#define RESET_BUTTON_IS_PRESSED (PINB & (1U << RESET_BUTTON))
+#define NEXT_BUTTON_IS_PRESSED  (PINB & (1U << NEXT_BUTTON))
+#define LED_ON                  PORTB |= (1U << LED)
+#define LED_OFF                 PORTB &= ~(1U << LED)
 
 /*******************************************************************************
  * @brief Enumeration for implementing the different states of the FSM.
@@ -39,22 +46,22 @@ typedef enum { STATE_0, STATE_1, STATE_2, STATE_3 } state_t;
 static void setup(void)
 {
     DDRB   = (1U << LED);
-    PORTB  = (1U << BUTTON) | (1U << RESET_BUTTON);
+    PORTB  = (1U << NEXT_BUTTON) | (1U << RESET_BUTTON);
     PCICR  = (1U << PCIE0);
-    PCMSK0 = (1U << BUTTON | (1U << RESET_BUTTON));
+    PCMSK0 = (1U << NEXT_BUTTON | (1U << RESET_BUTTON));
     asm("SEI");
 }
 
 /*******************************************************************************
- * @brief Updates the state machine whenever a button is pressed.
+ * @brief Updates the state machine whenever any button is pressed.
  ******************************************************************************/
 static void update_state(void)
 {
-    if (SYSTEM_RESET)
+    if (RESET_BUTTON_IS_PRESSED)
     {
         state = STATE_0;
     }
-    else if (BUTTON_IS_PRESSED)
+    else if (NEXT_BUTTON_IS_PRESSED)
     {
         switch (state)
         {
@@ -73,11 +80,11 @@ static void update_state(void)
         }
     }
     if (state == STATE_3) { LED_ON; }
-    else { LED_OFF; }
+    else                  { LED_OFF; }
 }
 
 /*******************************************************************************
- * @brief Updates the state machine whenever a button is pressed.
+ * @brief Updates the state machine whenever any button is pressed.
  ******************************************************************************/
 ISR (PCINT0_vect)
 {
